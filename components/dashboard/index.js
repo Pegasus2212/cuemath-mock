@@ -43,18 +43,69 @@ export default DashboardContainer = ({ navigation }) => {
   ];
 
   const lottieRef = useRef();
-  const [progress, setProgress] = useState(0.33);
-  const [tapCount, setTapCount] = useState(0);
+  const [currentFraction, setCurrentFraction] = useState(0);
+  const fractions = [0, 1 / 3, 2 / 3, 1];
+  //   const handlePlayNextFraction = () => {
+  //     const startFrame = fractions[currentFraction] * 100;
+  //     const endFrame = fractions[currentFraction + 1] * 100;
+  //     console.log("ST", startFrame, endFrame);
+  //     lottieRef.current.play(startFrame, endFrame);
+
+  //     setCurrentFraction((prev) => (prev + 1) % 3);
+  //   };
+  //   const handlePlayNextFraction = () => {
+  //     if (lottieRef.current) {
+  //       const duration = 5000; // total duration of the animation in milliseconds
+  //       const fractionDuration = duration / 3; // 1/3 of the total duration
+
+  //       // Calculate start and end times for the next fraction
+  //       const startTime = currentFraction * fractionDuration;
+  //       const endTime = startTime + fractionDuration;
+
+  //       // Reset animation to start time and play to end time
+  //       lottieRef.current.play(startTime, endTime);
+
+  //       // Update the current fraction
+  //       setCurrentFraction((prev) => (prev + 1) % 3);
+  //     }
+  //   };
   const panelRef = useRef(null);
-  const animationProgress = useRef(new Animated.Value(0));
   const handlePress = (index) => {
     Vibration.vibrate(10);
     if (index == 0) {
       panelRef.current?.togglePanel();
     } else if (index == 2) {
       handleButtonPress();
+    } else {
+      handlePlayNextFraction();
     }
   };
+  const animation = useRef(null);
+  const [progress, setProgress] = useState(0.33);
+
+  useEffect(() => {
+    if (animation.current) {
+      animation.current.play();
+    }
+  }, [progress]);
+
+  const handlePlayNextFraction = () => {
+    // const nextFraction = (currentFraction + 1) % 3;
+    // setProgress(fractions[nextFraction]);
+    // setCurrentFraction(nextFraction);
+    const nextFraction = (currentFraction + 1) % 3;
+    const progress = nextFraction / 3;
+
+    Animated.timing(animationProgress.current, {
+      toValue: progress,
+      duration: 1500,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start();
+
+    setCurrentFraction(nextFraction);
+  };
+  const animationProgress = useRef(new Animated.Value(0));
   const CarouselItem = ({ item, index }) => (
     <View style={styles.slide}>
       <TouchableOpacity onPress={() => handlePress(index)} activeOpacity={0.8}>
@@ -68,17 +119,16 @@ export default DashboardContainer = ({ navigation }) => {
             />
           ) : index == 1 ? (
             <AnimatedLottieView
-              ref={lottieRef}
+              ref={animation}
               style={{ flex: 1 }}
               source={require("../../assets/lottie/nakb.json")}
               progress={animationProgress.current}
-              // autoPlay
               colorFilters={
                 [
-                  // {
-                  //   keypath: "Circle Stroke",
-                  //   color: "blue",
-                  // },
+                  //   {
+                  //     keypath: "Circle Stroke",
+                  //     color: "blue",
+                  //   },
                 ]
               }
               loop={false}
@@ -246,7 +296,7 @@ export default DashboardContainer = ({ navigation }) => {
             sliderMinHeight={56}
             sliderMaxHeight={viewportHeight}
             wrapperStyle={{
-              backgroundColor: "#000",
+              backgroundColor: "#2B2B2B",
               borderTopWidth: 3,
               borderColor: "#fff",
             }}
