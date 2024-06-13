@@ -51,7 +51,6 @@ export default function App() {
           options={{ headerShown: false }}
         />
 
-        {/* <Stack.Screen name="Details" component={DetailsScreen} /> Uncomment if needed */}
       </Stack.Navigator>
     </Provider>
   );
