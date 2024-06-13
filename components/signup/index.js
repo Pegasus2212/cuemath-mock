@@ -51,7 +51,6 @@ export default SignupContainer = ({ navigation }) => {
   };
   const onSubmit = async () => {
     try {
-      console.log(credentails);
       Vibration.vibrate(10);
       const pattern = /^[^s@]+@[^s@]+.[^s@]+$/;
       if (

@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Vibration,
   View,
 } from "react-native";
 import { COLORS, FONT } from "../../contants/theme";
@@ -47,6 +48,7 @@ export default DashboardContainer = ({ navigation }) => {
   const panelRef = useRef(null);
   const animationProgress = useRef(new Animated.Value(0));
   const handlePress = (index) => {
+    Vibration.vibrate(10);
     if (index == 0) {
       panelRef.current?.togglePanel();
     } else if (index == 2) {
@@ -267,7 +269,12 @@ export default DashboardContainer = ({ navigation }) => {
               }}
             >
               <Text
-                style={{ fontFamily: FONT[600], fontSize: 22, color: "#fff", textAlign: "center" }}
+                style={{
+                  fontFamily: FONT[600],
+                  fontSize: 22,
+                  color: "#fff",
+                  textAlign: "center",
+                }}
               >
                 This is a bottom sheet, launched by tapping on lottie or swiping
                 up.
