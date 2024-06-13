@@ -7,7 +7,7 @@ npm start
 
 ```sh
 visit https://expo.dev/go
-install for the device you are operating on (android/iOS)
+install Expo Go application for the device you are operating on (android/iOS)
 open the application on mobile and scan the QR Code.
 you shall see a QR Code once you start the application by 'npm start'
 Application is LIVE 
