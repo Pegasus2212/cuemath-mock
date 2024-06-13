@@ -10,13 +10,13 @@ visit https://expo.dev/go
 install Expo Go application for the device you are operating on (android/iOS)
 open the application on mobile and scan the QR Code.
 you shall see a QR Code once you start the application by 'npm start'
-Application is LIVE 
+Application is LIVE
 ```
 
 ## 📝 Notes
 
-- I've more than 3 years of working in a SaaS startup, i.e, completely web-application.
-- This is the first project in which I've worked on React-Native. I would completely understand elsewise, I've great grasping power which I've shown in this assigment, Do review it.
+- I've more than 3 years of experience working in a SaaS startup, i.e, completely web-application with the help of ReactJS.
+- This is the first project in which I've worked on React-Native. I would completely understand elsewise, I've great grasping power which I've shown in this assigment, Please Do review it.
 - Tried my level best to align with all the features as well as bonus on routes provided in Figma file, be it fontSize, fontFamily, hug padding, fixed padding etc.
 - Error Management is handled precisely with try and catch and beautified it with the help of toasts
 - createStackNavigator is used from React Navigation for creating a customizable routing system
